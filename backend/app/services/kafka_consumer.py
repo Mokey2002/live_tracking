@@ -4,6 +4,12 @@ import os
 
 # Optional: load environment variables
 from dotenv import load_dotenv
+load_dotenv(dotenv_path="/home/ed/Desktop/gps_vehicle_tracking/backend/.env")
+print("🔍 KAFKA_BOOTSTRAP_SERVERS =", os.getenv("KAFKA_BOOTSTRAP_SERVERS"))
+if os.path.exists("/.dockerenv"):
+    print("🪵 Running INSIDE Docker container")
+else:
+    print("💻 Running OUTSIDE Docker container")
 from app.services.location_cache import set_latest_location
 
 load_dotenv()

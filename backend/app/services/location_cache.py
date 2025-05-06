@@ -3,7 +3,8 @@ import json
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path="backend/.env") 
+#load_dotenv()
 
 # Connect to Redis
 r = redis.Redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"))
