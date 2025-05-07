@@ -44,4 +44,14 @@ services:
       - REDIS_URL=redis://redis:6379
     depends_on:
       - redis
+  avg-speed-service:
+    build:
+      context: ../avg_speed_service
+    ports:
+      - "9001:9001"
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - kafka
+      - redis
 
