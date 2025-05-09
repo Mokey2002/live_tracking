@@ -3,30 +3,25 @@ import json
 import time
 import random
 
-# Simulated list of truck IDs
-TRUCK_IDS = [f"TRUCK{i:03}" for i in range(1, 6)]  # TRUCK001 to TRUCK005
-
-# Kafka setup
 producer = KafkaProducer(
-    bootstrap_servers='localhost:9092',
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+    bootstrap_servers="localhost:9092",  # use 'kafka:9092' if running inside Docker
+    value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
-# Frequency (seconds between messages per truck)
-MESSAGE_INTERVAL = 1.0
+TRUCK_IDS = [f"TRUCK{i:03}" for i in range(1, 4)]
 
-print("🚛 Starting producer for multiple trucks...")
+def generate_data(truck_id):
+    return {
+        "truck_id": truck_id,
+        "lat": round(random.uniform(37.75, 37.80), 5),
+        "lng": round(random.uniform(-122.45, -122.40), 5),
+        "timestamp": time.time()
+    }
 
 while True:
     for truck_id in TRUCK_IDS:
-        message = {
-            "truck_id": truck_id,
-            "lat": round(random.uniform(37.7, 37.9), 5),
-            "lng": round(random.uniform(-122.5, -122.3), 5),
-            "timestamp": time.time()
-        }
-        print(f"📤 Sending: {message}")
-        producer.send("truck-locations", value=message)
-    producer.flush()
-    time.sleep(MESSAGE_INTERVAL)
+        payload = generate_data(truck_id)
+        producer.send("truck-locations", value=payload)
+        print("📤 Sent:", payload)
+    time.sleep(0.5)  # Send all trucks every 0.5s (~10 messages/sec total)
 

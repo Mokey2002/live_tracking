@@ -16,14 +16,21 @@ load_dotenv()
 
 BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 TOPIC = "truck-locations"
+def safe_deserializer(m):
+    try:
+        return json.loads(m.decode('utf-8'))
+    except Exception as e:
+        print(f"❌ Failed to decode message: {m} — {e}")
+        return None
 
 consumer = KafkaConsumer(
     TOPIC,
     bootstrap_servers=BOOTSTRAP_SERVERS,
     auto_offset_reset='earliest',
     group_id='location-tracker',
-    value_deserializer=lambda m: json.loads(m.decode('utf-8'))
+    value_deserializer=safe_deserializer
 )
+
 
 print("✅ Kafka consumer started...")
 
