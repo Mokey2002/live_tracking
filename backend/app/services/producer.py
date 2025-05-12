@@ -4,7 +4,7 @@ import time
 import random
 
 producer = KafkaProducer(
-    bootstrap_servers="localhost:9092",  # use 'kafka:9092' if running inside Docker
+    bootstrap_servers="localhost:9094",  # use 'kafka:9092' if running inside Docker
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 

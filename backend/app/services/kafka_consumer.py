@@ -14,7 +14,7 @@ from app.services.location_cache import set_latest_location
 
 load_dotenv()
 
-BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
+BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9094")
 TOPIC = "truck-locations"
 def safe_deserializer(m):
     try:
