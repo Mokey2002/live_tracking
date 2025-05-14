@@ -11,4 +11,8 @@ app.include_router(fleet.router, prefix="/fleet", tags=["Fleet"])
 @app.get("/")
 def root():
     return {"message": "FleetOps API is running"}
+@app.get("/ping")
+def ping():
+    print("✅ Ping route hit")
+    return {"msg": "pong"}
 

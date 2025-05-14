@@ -1,5 +1,5 @@
 import time
-from services.truck_status import is_truck_offline
+from app.services.truck_status import is_truck_offline
 
 def test_truck_is_offline():
     past = time.time() - 40  # 40 seconds ago

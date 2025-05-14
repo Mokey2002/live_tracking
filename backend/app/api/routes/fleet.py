@@ -10,6 +10,8 @@ def list_trucks():
 
 @router.get("/{truck_id}/location")
 def get_truck_location(truck_id: str):
+    print(f"🔍 Fetching location for: {truck_id}")
+
     location = get_latest_location(truck_id)
     if not location:
         return {"error": "No data for this truck"}
