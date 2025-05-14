@@ -8,24 +8,14 @@ FleetOps is a real-time fleet tracking backend system designed to ingest, store,
 ## 🛠 Tech Stack
 - **FastAPI** for API development
 - **Kafka** for real-time message streaming
-- **PostgreSQL** for relational data storage
 - **Redis** for caching
-- **Celery** for background analytics tasks
 - **Docker** and **Docker Compose** for local development
-- **Terraform** for AWS infrastructure
-- **GitHub Actions** for CI/CD
 
-## 📚 Learning Goals
 - Design RESTful APIs with FastAPI
 - Stream and process data in real time with Kafka
-- Model and persist structured data using SQL and ORMs
 - Cache dynamic data for low-latency access with Redis
-- Run background tasks asynchronously using Celery
 - Set up local dev environments with Docker Compose
 - Write and maintain unit/integration tests with pytest
-- Deploy infrastructure-as-code using Terraform
-- Monitor services and set up basic observability
-- Practice scalable, production-ready backend design
 
 ## 🧪 How to Run Locally
 1. Ensure Docker and Docker Compose are installed
